@@ -1,110 +1,137 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
-import {
-  Briefcase,
-  MapPin,
-  Clock,
-  CheckCircle2,
-  Send,
-  X,
-  Sparkles,
-  Users,
-  TrendingUp,
-} from "lucide-react";
+import { motion } from "framer-motion";
+import { Briefcase, MapPin, Clock } from "lucide-react";
 
 export const Route = createFileRoute("/careers")({
-  head: () => ({
-    meta: [
-      { title: "Careers at Axentra Nexus — Join Our Team" },
-      {
-        name: "description",
-        content:
-          "Explore open roles at Axentra Nexus. Join a fast-growing BPO and business solutions team scaling enterprises with precision and intelligence.",
-      },
-    ],
-  }),
   component: CareersPage,
 });
 
-type Opening = {
-  id: string;
-  title: string;
-  type: string;
-  location: string;
-  experience: string;
-  summary: string;
-  responsibilities: string[];
-  requirements: string[];
-};
-
-function CareersPage() {
-  const [activeRole, setActiveRole] = useState<Opening | null>(null);
-
-  const handleFakeSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    // TEMP CLIENT-SIDE ONLY (replace later with API endpoint)
-    alert("Application submitted successfully (demo mode)");
-    setActiveRole(null);
-  };
-
-  return (
-    <>
-      <section className="relative overflow-hidden bg-[oklch(0.16_0.02_260)] text-background">
-        <div className="container-max px-4 py-24">
-          <h1 className="text-5xl font-bold">
-            Build your career with Axentra Nexus
-          </h1>
-        </div>
-      </section>
-
-      <section className="section-padding bg-background">
-        <div className="container-max grid gap-6 lg:grid-cols-2">
-          {openings.map((role) => (
-            <div key={role.id} className="border rounded-xl p-6">
-              <h3 className="text-xl font-bold">{role.title}</h3>
-
-              <button
-                onClick={() => setActiveRole(role)}
-                className="mt-4 rounded bg-black text-white px-4 py-2"
-              >
-                Apply
-              </button>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {activeRole && (
-        <div className="fixed inset-0 bg-black/40 flex items-center justify-center">
-          <div className="bg-white p-6 rounded-xl w-full max-w-lg">
-            <button onClick={() => setActiveRole(null)}>Close</button>
-
-            <form onSubmit={handleFakeSubmit} className="space-y-3">
-              <input placeholder="Name" className="border p-2 w-full" />
-              <input placeholder="Email" className="border p-2 w-full" />
-
-              <button className="bg-black text-white px-4 py-2 w-full">
-                Submit
-              </button>
-            </form>
-          </div>
-        </div>
-      )}
-    </>
-  );
-}
-
-/* keep your openings array below (unchanged) */
-const openings: Opening[] = [
+const jobs = [
   {
-    id: "csr-email-chat",
     title: "Customer Support Representative",
-    type: "Full-time",
-    location: "Bengaluru, India",
-    experience: "0–2 years",
-    summary: "Customer support role",
-    responsibilities: ["Handle queries", "Resolve tickets", "Support users"],
-    requirements: ["Good English", "Typing skills", "Customer focus"],
+    location: "Remote / Bengaluru",
+    type: "Full Time",
+  },
+  {
+    title: "Customer Support Team Lead",
+    location: "Bengaluru",
+    type: "Full Time",
+  },
+  {
+    title: "Quality Analyst",
+    location: "Remote",
+    type: "Night Shift",
+  },
+  {
+    title: "Front End Developer Intern",
+    location: "Remote",
+    type: "Internship",
   },
 ];
+
+function applyNow(jobTitle: string) {
+  const subject = encodeURIComponent(
+    `Application for ${jobTitle} - Axentra Nexus`
+  );
+
+  const body = encodeURIComponent(`
+Full Name:
+Phone Number:
+Email Address:
+Experience:
+
+Applying For:
+${jobTitle}
+
+Resume Link:
+(Paste Google Drive link here)
+  `);
+
+  window.location.href = `mailto:business@axentra.co.in?subject=${subject}&body=${body}`;
+}
+
+function CareersPage() {
+  return (
+    <div className="min-h-screen bg-background">
+      {/* HERO */}
+      <section className="relative overflow-hidden bg-[#020817] py-28">
+        <div className="absolute inset-0 opacity-20 bg-gradient-to-r from-green-500 via-blue-500 to-indigo-500" />
+
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="relative container-max px-6"
+        >
+          <h1 className="text-5xl font-extrabold tracking-tight text-white sm:text-6xl">
+            Build your career with{" "}
+            <span className="bg-gradient-to-r from-green-400 to-blue-500 bg-clip-text text-transparent">
+              Axentra Nexus
+            </span>
+          </h1>
+
+          <p className="mt-6 max-w-2xl text-lg text-slate-300">
+            Join a fast-growing BPO and customer experience company helping
+            enterprises scale operations globally.
+          </p>
+        </motion.div>
+      </section>
+
+      {/* JOBS */}
+      <section className="section-padding">
+        <div className="container-max">
+          <div className="grid gap-8 md:grid-cols-2">
+            {jobs.map((job, index) => (
+              <motion.div
+                key={job.title}
+                initial={{ opacity: 0, y: 25 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{
+                  duration: 0.4,
+                  delay: index * 0.1,
+                }}
+                className="rounded-3xl border border-border bg-card p-8 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl"
+              >
+                <div className="flex items-start gap-4">
+                  <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-r from-green-500 to-blue-500 text-white">
+                    <Briefcase className="h-6 w-6" />
+                  </div>
+
+                  <div>
+                    <h2 className="text-2xl font-bold text-foreground">
+                      {job.title}
+                    </h2>
+
+                    <div className="mt-3 flex flex-wrap gap-4 text-sm text-muted-foreground">
+                      <span className="flex items-center gap-1">
+                        <MapPin className="h-4 w-4" />
+                        {job.location}
+                      </span>
+
+                      <span className="flex items-center gap-1">
+                        <Clock className="h-4 w-4" />
+                        {job.type}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                <p className="mt-6 text-muted-foreground">
+                  Join Axentra Nexus and work with a passionate team delivering
+                  customer experience excellence to global clients.
+                </p>
+
+                <button
+                  onClick={() => applyNow(job.title)}
+                  className="mt-8 inline-flex items-center justify-center rounded-full bg-gradient-to-r from-green-500 to-blue-500 px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:scale-105"
+                >
+                  Apply Now
+                </button>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}
