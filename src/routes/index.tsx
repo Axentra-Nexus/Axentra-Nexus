@@ -87,7 +87,7 @@ function HomePage() {
       {/* HERO */}
       <section className="relative overflow-hidden bg-[oklch(0.16_0.02_260)] text-background">
         <video
-          src={heroVideo.url}
+          src="/hero.mp4"
           poster={heroOffice}
           autoPlay
           muted
