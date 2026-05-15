@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Globe, Mail, ArrowRight, Briefcase, GraduationCap, Sparkles } from "lucide-react";
-import ashwini from "@/assets/team-ashwini.jpg";
+import ashwini from "@/assets/team-ashwini_v2.jpg";
 import saivijay from "@/assets/team-saivijay.jpg";
 import nithin from "@/assets/team-nithin.jpg";
 import rohith from "@/assets/team-rohith.jpg";
