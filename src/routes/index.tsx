@@ -44,97 +44,64 @@ function HomePage() {
   return (
     <>
       {/* HERO */}
-      <section className="relative min-h-screen overflow-hidden text-white">
+<section className="relative overflow-hidden bg-[oklch(0.16_0.02_260)] text-background">
+  <video
+    src="/hero.mp4"
+    poster={heroOffice}
+    autoPlay
+    muted
+    loop
+    playsInline
+    className="absolute inset-0 h-full w-full object-cover opacity-40"
+  />
 
-        {/* CINEMATIC VIDEO */}
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="auto"
-          className="absolute inset-0 h-full w-full object-cover scale-110 animate-zoomSlow"
+  <div className="absolute inset-0 bg-gradient-to-r from-[oklch(0.16_0.02_260)] via-[oklch(0.16_0.02_260/0.85)] to-[oklch(0.16_0.02_260/0.45)]" />
+
+  <div className="container-max relative px-4 py-28 sm:px-6 sm:py-36 lg:px-8 lg:py-44">
+    <div className="max-w-3xl animate-fade-up">
+      <span className="mb-6 inline-flex items-center gap-2 rounded-full border border-background/20 bg-background/5 px-4 py-1.5 text-xs font-medium uppercase tracking-wider text-background backdrop-blur">
+        <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+        Premium Business Solutions Partner
+      </span>
+
+      <h1 className="heading-1 text-white text-7xl leading-[1.1] tracking-tight drop-shadow-md sm:text-5xl lg:text-7xl">
+        <span className="text-white">
+          Scaling Businesses with
+        </span>{" "}
+        <span className="text-gradient-brand">
+          Precision, Speed
+        </span>{" "}
+        <span className="text-white">
+          and Intelligence
+        </span>
+      </h1>
+
+      <p className="mt-6 max-w-2xl text-lg leading-relaxed text-background/90 sm:text-xl">
+        BPO <span className="mx-2 opacity-60">|</span>
+        Lending <span className="mx-2 opacity-60">|</span>
+        Customer Experience <span className="mx-2 opacity-60">|</span>
+        Growth Solutions
+      </p>
+
+      <div className="mt-10 flex flex-wrap gap-4">
+        <Link
+          to="/contact"
+          className="inline-flex h-12 items-center gap-2 rounded-full gradient-brand px-8 text-sm font-semibold text-primary-foreground shadow-lg transition-transform hover:scale-[1.03]"
         >
-          <source src="/hero.mp4" type="video/mp4" />
-        </video>
+          Partner With Us
+          <ArrowRight className="h-4 w-4" />
+        </Link>
 
-        {/* PARALLAX LIGHT LAYERS */}
-        <div className="parallax-bg" />
-
-        {/* DARK OVERLAY */}
-        <div className="absolute inset-0 hero-overlay" />
-
-        {/* NOISE OVERLAY */}
-        <div className="noise-overlay" />
-
-        {/* HERO CONTENT */}
-        <div className="container-max relative flex min-h-screen items-center px-6">
-
-          <div className="max-w-4xl">
-
-            {/* BADGE */}
-            <div className="glass-card mb-8 inline-flex items-center gap-3 rounded-full px-5 py-2 text-xs uppercase tracking-[0.25em]">
-              Premium Business Solutions Partner
-            </div>
-
-            {/* TYPEWRITER HEADLINE */}
-            <h1 className="text-5xl font-black leading-tight sm:text-6xl lg:text-8xl">
-              <span className="typing-line block">Scaling Businesses</span>
-              <span className="typing-line delay-700 block text-gradient-brand">
-                With Precision,
-              </span>
-              <span className="typing-line delay-1400 block">
-                Speed & Intelligence
-              </span>
-            </h1>
-
-            {/* SUBTEXT */}
-            <p className="mt-8 text-lg text-white/80">
-              BPO | Lending | Customer Experience | Growth Solutions
-            </p>
-
-            {/* CTA */}
-            <div className="mt-10 flex gap-4">
-              <Link
-                to="/contact"
-                className="glass-card rounded-full bg-primary px-8 py-4 font-semibold text-black hover:scale-105 transition"
-              >
-                Partner With Us
-              </Link>
-
-              <Link
-                to="/services"
-                className="glass-card rounded-full px-8 py-4 hover:bg-white/10 transition"
-              >
-                Explore Services
-              </Link>
-            </div>
-
-            {/* FLOATING METRICS */}
-            <div className="mt-16 grid grid-cols-2 gap-4 sm:grid-cols-4">
-              {[
-                ["24×7", "Operations"],
-                ["AI", "Driven"],
-                ["Global", "Delivery"],
-                ["Premium", "Talent"],
-              ].map(([a, b]) => (
-                <div key={a} className="glass-card animate-floatSlow rounded-2xl p-5">
-                  <div className="text-2xl font-bold">{a}</div>
-                  <div className="text-xs opacity-70">{b}</div>
-                </div>
-              ))}
-            </div>
-
-          </div>
-        </div>
-
-        {/* SCROLL INDICATOR */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-          <div className="h-10 w-6 rounded-full border border-white/30" />
-        </div>
-
-      </section>
-
+        <Link
+          to="/services"
+          className="inline-flex h-12 items-center rounded-full border border-background/30 bg-background/5 px-8 text-sm font-semibold backdrop-blur transition-colors hover:bg-background/10"
+        >
+          Explore Services
+        </Link>
+      </div>
+    </div>
+  </div>
+</section>
       {/* KEEP REST OF YOUR PAGE EXACT SAME */}
     </>
   );
