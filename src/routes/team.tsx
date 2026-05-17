@@ -32,7 +32,7 @@ type Member = {
 };
 
 const founders: Member[] = [
-//  {
+ {
     name: "Nithin Rao",
     role: "Co-Founder",
     image: nithin,
