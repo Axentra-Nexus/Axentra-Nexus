@@ -2,9 +2,9 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Globe, Mail, ArrowRight, Briefcase, GraduationCap, Sparkles } from "lucide-react";
 import ashwini from "@/assets/team-ashwini_v2.jpg";
 import saivijay from "@/assets/team-saivijay.jpg";
-import nithin from "@/assets/team-nithin.jpg";
 import rohith from "@/assets/team-rohith.jpg";
 import leadershipTeam from "@/assets/leadership-team.jpg";
+import logo from "@/assets/axentra-logo.png";
 
 export const Route = createFileRoute("/team")({
   head: () => ({
@@ -24,6 +24,7 @@ type Member = {
   name: string;
   role: string;
   image: string;
+  useLogo?: boolean;
   years: string;
   short: string;
   bio: string;
@@ -32,16 +33,6 @@ type Member = {
 };
 
 const founders: Member[] = [
- {
-    name: "Nithin Rao",
-    role: "Co-Founder",
-    image: nithin,
-    years: "14+ yrs",
-    short: "Banking, Finance, E-commerce & BPO",
-    bio: "An MBA in Systems & Operations Management, Nithin has spent over fourteen years building and leading large-scale operations across Banking, Financial Services, E-commerce and BPO. He has architected onshore and offshore delivery models, run multi-hundred-seat contact centers, and led digital transformation programs that combine process rigor with measurable cost-to-serve impact. His operating playbook — built on Six Sigma discipline, workforce analytics and customer-obsessed design — anchors how Axentra Nexus designs every engagement, from pilot to enterprise scale.",
-    expertise: ["Banking & Financial Services", "BPO Operations", "E-commerce Support", "Six Sigma & Process Design", "Workforce Management", "Digital Transformation"],
-    education: "MBA — Systems & Operations Management",
-  },
   {
     name: "C Sai Vijay Rahul",
     role: "Co-Founder",
@@ -50,6 +41,17 @@ const founders: Member[] = [
     short: "Business Management & Project Delivery",
     bio: "Sai Vijay's career spans the music industry, hospitality business management and project management consulting. This unique blend gives him a sharp eye for client experience, brand-led storytelling and disciplined project execution — the cultural backbone of Axentra Nexus.",
     expertise: ["Business Management", "Hospitality Operations", "Project Management", "Brand & Culture", "Client Delivery"],
+  },
+  {
+    name: "Nithin",
+    role: "Co-Founder",
+    image: logo,
+    useLogo: true,
+    years: "14+ yrs",
+    short: "Banking, Finance, E-commerce & BPO",
+    bio: "An MBA in Systems & Operations Management, Nithin has spent over fourteen years building and leading large-scale operations across Banking, Financial Services, E-commerce and BPO. He has architected onshore and offshore delivery models, run multi-hundred-seat contact centers, and led digital transformation programs that combine process rigor with measurable cost-to-serve impact. His operating playbook — built on Six Sigma discipline, workforce analytics and customer-obsessed design — anchors how Axentra Nexus designs every engagement, from pilot to enterprise scale.",
+    expertise: ["Banking & Financial Services", "BPO Operations", "E-commerce Support", "Six Sigma & Process Design", "Workforce Management", "Digital Transformation"],
+    education: "MBA — Systems & Operations Management",
   },
 ];
 
@@ -79,17 +81,25 @@ function MemberCard({ member }: { member: Member; featured?: boolean }) {
   return (
     <article className="group relative overflow-hidden rounded-3xl border border-border bg-card p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-2xl sm:p-7">
       <div className="flex flex-col gap-6 sm:flex-row sm:items-start">
-        {/* Photo */}
+        {/* Photo / Logo */}
         <div className="relative shrink-0">
-          <div className="relative h-28 w-28 overflow-hidden rounded-full ring-2 ring-primary/20 ring-offset-2 ring-offset-card sm:h-32 sm:w-32">
-            <img
-              src={member.image}
-              alt={`${member.name}, ${member.role} at Axentra Nexus`}
-              width={256}
-              height={256}
-              loading="lazy"
-              className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
-            />
+          <div className={`relative h-28 w-28 overflow-hidden ring-2 ring-primary/20 ring-offset-2 ring-offset-card sm:h-32 sm:w-32 ${member.useLogo ? "rounded-2xl bg-secondary/60 flex items-center justify-center" : "rounded-full"}`}>
+            {member.useLogo ? (
+              <img
+                src={member.image}
+                alt="Axentra Nexus logo"
+                className="h-20 w-20 object-contain sm:h-24 sm:w-24"
+              />
+            ) : (
+              <img
+                src={member.image}
+                alt={`${member.name}, ${member.role} at Axentra Nexus`}
+                width={256}
+                height={256}
+                loading="lazy"
+                className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+              />
+            )}
           </div>
           <div className="absolute -bottom-1 left-1/2 inline-flex -translate-x-1/2 items-center gap-1 rounded-full bg-primary px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-primary-foreground shadow-md">
             <Sparkles className="h-2.5 w-2.5" /> {member.years}
