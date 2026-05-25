@@ -87,7 +87,7 @@ function ContactPage() {
                 </div>
                 <div>
                   <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Headquarters</div>
-                  <div className="mt-0.5 font-semibold text-foreground">India</div>
+                  <div className="mt-0.5 font-semibold text-foreground">101, Oxford Towers, HSR Layout Sector 6, Bangalore</div>
                 </div>
               </div>
             </div>
