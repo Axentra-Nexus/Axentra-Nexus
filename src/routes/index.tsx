@@ -13,7 +13,6 @@ import {
   BarChart3,
 } from "lucide-react";
 
-// Static image assets (kept from original)
 import heroOffice from "@/assets/hero-office.jpg";
 import bpoCallCenter from "@/assets/bpo-call-center.jpg";
 import lendingFinance from "@/assets/lending-finance.jpg";
@@ -46,6 +45,26 @@ export const Route = createFileRoute("/")({
   }),
   component: HomePage,
 });
+
+const clients = [
+  {
+    name: "Shipradvik Corporation",
+    industry: "Banking · KYC & Lending Services",
+    icon: "🏦",
+  },
+  {
+    name: "Free Mobile",
+    industry: "Telecom · English Chat Support · France",
+    icon: "📡",
+  },
+  {
+    name: "Aeroitalia",
+    industry: "Aviation · Complete Support Services · Italy",
+    icon: "✈️",
+  },
+];
+
+const tickerItems = [...clients, ...clients, ...clients];
 
 const services = [
   {
@@ -92,12 +111,56 @@ const trust = [
   { icon: Cpu, value: "AI-First", label: "Tech-Driven Processes" },
 ] as const;
 
+function ClientTicker() {
+  return (
+    <div className="w-full mt-12">
+      <p className="text-center text-xs text-white/40 uppercase tracking-widest mb-6 font-medium">
+        Trusted by Global Clients · 170 Active Seats
+      </p>
+      <div className="relative overflow-hidden">
+        {/* Fade left */}
+        <div className="absolute left-0 top-0 h-full w-24 bg-gradient-to-r from-[oklch(0.16_0.02_260)] to-transparent z-10 pointer-events-none" />
+        {/* Fade right */}
+        <div className="absolute right-0 top-0 h-full w-24 bg-gradient-to-l from-[oklch(0.16_0.02_260)] to-transparent z-10 pointer-events-none" />
+        {/* Scrolling track */}
+        <div
+          className="flex gap-5 w-max"
+          style={{
+            animation: "ticker 28s linear infinite",
+          }}
+        >
+          {tickerItems.map((client, i) => (
+            <div
+              key={i}
+              className="flex items-center gap-4 bg-white/5 border border-white/10 rounded-xl px-6 py-4 min-w-[280px] backdrop-blur-sm"
+            >
+              <span className="text-3xl">{client.icon}</span>
+              <div>
+                <p className="text-white font-semibold text-sm leading-tight">
+                  {client.name}
+                </p>
+                <p className="text-white/50 text-xs mt-1">{client.industry}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+      {/* Keyframe injected via style tag */}
+      <style>{`
+        @keyframes ticker {
+          0%   { transform: translateX(0); }
+          100% { transform: translateX(-33.333%); }
+        }
+      `}</style>
+    </div>
+  );
+}
+
 function HomePage() {
   return (
     <>
       {/* ── HERO ─────────────────────────────────────────────────────────── */}
       <section className="relative overflow-hidden bg-[oklch(0.16_0.02_260)] text-background">
-        {/* Hero video from public folder */}
         <video
           src="/hero.mp4"
           poster={heroOffice}
@@ -138,6 +201,10 @@ function HomePage() {
                 Explore Services
               </Link>
             </div>
+
+            {/* ── CLIENT TICKER ── */}
+            <ClientTicker />
+
           </div>
         </div>
       </section>
