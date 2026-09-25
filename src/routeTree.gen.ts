@@ -170,7 +170,6 @@ export interface FileRouteTypes {
     | '/about'
     | '/careers'
     | '/contact'
-    | '/team'
     | '/industries/bfsi'
     | '/industries/ecommerce'
     | '/industries/healthcare'
@@ -189,7 +188,6 @@ export interface FileRouteTypes {
     | '/about'
     | '/careers'
     | '/contact'
-    | '/team'
     | '/industries/bfsi'
     | '/industries/ecommerce'
     | '/industries/healthcare'
@@ -208,7 +206,6 @@ export interface FileRouteTypes {
     | '/about'
     | '/careers'
     | '/contact'
-    | '/team'
     | '/industries/bfsi'
     | '/industries/ecommerce'
     | '/industries/healthcare'
@@ -228,7 +225,6 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   CareersRoute: typeof CareersRoute
   ContactRoute: typeof ContactRoute
-  TeamRoute: typeof TeamRoute
   IndustriesBfsiRoute: typeof IndustriesBfsiRoute
   IndustriesEcommerceRoute: typeof IndustriesEcommerceRoute
   IndustriesHealthcareRoute: typeof IndustriesHealthcareRoute
@@ -245,13 +241,6 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/team': {
-      id: '/team'
-      path: '/team'
-      fullPath: '/team'
-      preLoaderRoute: typeof TeamRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/contact': {
       id: '/contact'
       path: '/contact'
@@ -372,7 +361,6 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   CareersRoute: CareersRoute,
   ContactRoute: ContactRoute,
-  TeamRoute: TeamRoute,
   IndustriesBfsiRoute: IndustriesBfsiRoute,
   IndustriesEcommerceRoute: IndustriesEcommerceRoute,
   IndustriesHealthcareRoute: IndustriesHealthcareRoute,
